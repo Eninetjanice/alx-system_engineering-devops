@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# Script displays list of current running processes for all users in hierarchy
+# and in user-oriented format
+ls | ps aux
