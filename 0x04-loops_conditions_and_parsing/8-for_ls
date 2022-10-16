@@ -2,7 +2,8 @@
 # This script displays the contents of the current directory in list format
 # where only the part of the name after the first dash is displayed
 # using for loop
-for i in $(ls $CDPATH);
+list=$(ls)
+for i in $list $CDPTH;
 do
 	echo "$i" | cut -d '-' -f2
 done

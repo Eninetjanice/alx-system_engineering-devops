@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+# This script groups visitors by IP & HTTP status code, and displays this data.
+#The format is: OCCURENCE_NUMBER IP HTTP_CODE, in list format
+#Ordered from the greatest to the lowest number of occurrences
+# using awk withot using while, for, until and cut
