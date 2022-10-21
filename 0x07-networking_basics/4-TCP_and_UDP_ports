@@ -2,5 +2,5 @@
 # This script displays listening ports, shows the listening sockets, the PID &
 # the name of the program to which each socket belongs.
 
-sudo netstat -ltup
+ netstat -l --program
 
