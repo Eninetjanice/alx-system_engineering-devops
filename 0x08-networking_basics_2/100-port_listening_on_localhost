@@ -1,5 +1,0 @@
-#!/usr/bin/env bash
-# Listens on port 98 on localhost.
-
-ufw allow 98
-nc -l 98
