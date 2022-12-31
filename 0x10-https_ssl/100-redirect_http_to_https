@@ -37,7 +37,6 @@ frontend web-servers
     bind *:80
     bind *:443 ssl crt /etc/haproxy/certs/www.globaleninet.tech.pem
     http-request redirect scheme https if !{ ssl_fc }
-    #mode http
     http-request set-header X-Forwarded-Proto https
     default_backend app-servers
 
