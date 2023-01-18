@@ -1,23 +1,44 @@
 #!/usr/bin/python3
-'''
-A script to export data in the JSON format.
-'''
+"""
+This Script uses REST API for a given employee to
+return information about his/her TODO list progress
+and exports the data in the JSON format.
+"""
 
-import json
-import requests
+from json import dump
+from requests import get
 from sys import argv
 
+
+def todo_json(emp_id):
+    """ Send request for employee's
+        todo list to API
+    """
+    file_name = '{}.json'.format(emp_id)
+    url_user = 'https://jsonplaceholder.typicode.com/users/'
+    url_todo = 'https://jsonplaceholder.typicode.com/todos/'
+
+    # check if user exists
+    user = get(url_user + emp_id).json().get('username')
+
+    if user:
+        params = {'userId': emp_id}
+        #  get all tasks
+        tasks = get(url_todo, params=params).json()
+
+        #  create list of dictionaries
+        #  with info about each task
+        task_list = []
+        for task in tasks:
+            task_list.append({"task": task.get('title'),
+                              "completed": task.get('completed'),
+                              "username": user})
+
+        #  open file in write mode and jsonify
+        with open(file_name, 'w', encoding='utf8') as f:
+            dump({emp_id: task_list}, f)
+
+
 if __name__ == '__main__':
-    uid = argv[1]
-    url = "https://jsonplaceholder.typicode.com/users/{}".format(uid)
-    user = requests.get(url, verify=False).json()
-    url = "https://jsonplaceholder.typicode.com/todos?userId={}".format(uid)
-    todo = requests.get(url, verify=False).json()
-    name = user.get('username')
-    t = [{"task": t.get("title"),
-          "username": name,
-          "completed": t.get("completed")} for t in todo]
-    bj = {}
-    bj[uid] = t
-    with open("{}.json".format(uid), 'w') as filejs:
-        json.dump(bj, filejs)
+    if len(argv) > 1:
+        todo_json(argv[1])
