@@ -9,7 +9,8 @@ def recurse(subreddit, word_list, after="", dic={}):
     headers = {'User-Agent': 'Reddit API test'}
     params = {'limit': 100, 'after': after}
     url = f'https://www.reddit.com/r/{subreddit}/hot.json'
-    response = requests.get(url, headers=headers, params=params)
+    response = requests.get(url, headers=headers, params=params,
+                            allow_redirects=False)
 
     if response.status_code == 200:
         data = response.json()
