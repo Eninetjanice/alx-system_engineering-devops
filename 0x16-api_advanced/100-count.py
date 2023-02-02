@@ -39,6 +39,6 @@ def recurse(subreddit, word_list, after="", dic={}):
 
         for word, count in sorted_words:
             if count > 0:
-                print(f'{word}: {count}')
+                print({}: {}..format(word, count))
     else:
         return
