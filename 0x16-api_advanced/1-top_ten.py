@@ -1,16 +1,16 @@
 #!/usr/bin/python3
+"""Queries the Reddit API and
+prints the titles of the first
+10 hot posts listed for a given
+subreddit.
 """
-This queries the Reddit API and prints the titles of the first 10 hot posts
-listed for a given subreddit.
-"""
-
 import requests
 
 
 def top_ten(subreddit):
     """ Prints titles of first 10 hot posts """
     headers = {'User-Agent': 'Python/requests'}
-    url = f"https://www.reddit.com/r/{subreddit}/hot/.json?"
+    url = f"https://www.reddit.com/r/{subreddit}/hot.json"
     payload = {'limit': '10'}
     response = requests.get(url, headers=headers, params=payload,
                             allow_redirects=False)
