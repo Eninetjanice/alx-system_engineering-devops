@@ -8,7 +8,7 @@ def recurse(subreddit, word_list, after="", dic={}):
     """recursive function"""
     headers = {'User-Agent': 'Reddit API test'}
     params = {'limit': 100, 'after': after}
-    url = f'https://www.reddit.com/r/{subreddit}/hot.json'
+    url = "https://www.reddit.com/r/{}/hot.json".format(subreddit)
     response = requests.get(url, headers=headers, params=params,
                             allow_redirects=False)
 
@@ -39,6 +39,6 @@ def recurse(subreddit, word_list, after="", dic={}):
 
         for word, count in sorted_words:
             if count > 0:
-                print(f'{word}: {count}')
+                print({}: {}..format(word, count))
     else:
         return

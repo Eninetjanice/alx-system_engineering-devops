@@ -10,7 +10,7 @@ import requests
 def top_ten(subreddit):
     """ Prints titles of first 10 hot posts """
     headers = {'User-Agent': 'Python/requests'}
-    url = f"https://www.reddit.com/r/{subreddit}/hot.json"
+    url = "https://www.reddit.com/r/{}/hot.json".format(subreddit)
     payload = {'limit': '10'}
     response = requests.get(url, headers=headers, params=payload,
                             allow_redirects=False)
